@@ -1,0 +1,549 @@
+{ "routes": [
+    {
+        "city1":    "Vancouver",
+        "city2":    "Seattle",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 1
+    },
+    {
+        "city1":    "Vancouver",
+        "city2":    "Calgary",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Seattle",
+        "city2":    "Calgary",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Seattle",
+        "city2":    "Portland",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 1
+    },
+    {
+        "city1":    "Calgary",
+        "city2":    "Helena",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 4 
+    },
+    {
+        "city1":    "Seattle",
+        "city2":    "Helena",
+        "color1":   "Yellow",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Portland",
+        "city2":    "SaltLakeCity",
+        "color1":   "Blue",
+        "color2":   "None",
+        "numTrains": 6 
+    },
+    {
+        "city1":    "Portland",
+        "city2":    "SanFrancisco",
+        "color1":   "Green",
+        "color2":   "Pink",
+        "numTrains": 5 
+    },
+    {
+        "city1":    "SanFrancisco",
+        "city2":    "SaltLakeCity",
+        "color1":   "Orange",
+        "color2":   "White",
+        "numTrains": 5 
+    },
+    {
+        "city1":    "SanFrancisco",
+        "city2":    "LosAngeles",
+        "color1":   "Yellow",
+        "color2":   "Pink",
+        "numTrains": 3
+    },
+    {
+        "city1":    "LosAngeles",
+        "city2":    "LasVegas",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "LasVegas",
+        "city2":    "SaltLakeCity",
+        "color1":   "Orange",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "SaltLakeCity",
+        "city2":    "Helena",
+        "color1":   "Pink",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Calgary",
+        "city2":    "Winnipeg",
+        "color1":   "White",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Helena",
+        "city2":    "Winnipeg",
+        "color1":   "Blue",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Helena",
+        "city2":    "Denver",
+        "color1":   "Green",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "SaltLakeCity",
+        "city2":    "Denver",
+        "color1":   "Red",
+        "color2":   "Yellow",
+        "numTrains": 3
+    },
+    {
+        "city1":    "LosAngeles",
+        "city2":    "Phoenix",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "LosAngeles",
+        "city2":    "ElPaso",
+        "color1":   "Black",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Phoenix",
+        "city2":    "Denver",
+        "color1":   "White",
+        "color2":   "None",
+        "numTrains": 5
+    },
+    {
+        "city1":    "Phoenix",
+        "city2":    "SantaFe",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Phoenix",
+        "city2":    "ElPaso",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Denver",
+        "city2":    "SantaFe",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "SantaFe",
+        "city2":    "ElPaso",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Winnipeg",
+        "city2":    "SaultStMarie",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Winnipeg",
+        "city2":    "Duluth",
+        "color1":   "Black",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Helena",
+        "city2":    "Duluth",
+        "color1":   "Orange",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Helena",
+        "city2":    "Omaha",
+        "color1":   "Red",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Denver",
+        "city2":    "Omaha",
+        "color1":   "Pink",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Denver",
+        "city2":    "KansasCity",
+        "color1":   "Black",
+        "color2":   "Orange",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Denver",
+        "city2":    "OklahomaCity",
+        "color1":   "Red",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "SantaFe",
+        "city2":    "OklahomaCity",
+        "color1":   "Blue",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "ElPaso",
+        "city2":    "OklahomaCity",
+        "color1":   "Yellow",
+        "color2":   "None",
+        "numTrains": 5
+    },
+    {
+        "city1":    "ElPaso",
+        "city2":    "Dallas",
+        "color1":   "Red",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "ElPaso",
+        "city2":    "Houston",
+        "color1":   "Green",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Duluth",
+        "city2":    "SaultStMarie",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Duluth",
+        "city2":    "Omaha",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Omaha",
+        "city2":    "KansasCity",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 1
+    },
+    {
+        "city1":    "KansasCity",
+        "city2":    "OklahomaCity",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 2
+    },
+    {
+        "city1":    "OklahomaCity",
+        "city2":    "Dallas",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Dallas",
+        "city2":    "Houston",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 1
+    },
+    {
+        "city1":    "Duluth",
+        "city2":    "Chicago",
+        "color1":   "Red",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Duluth",
+        "city2":    "Toronto",
+        "color1":   "Pink",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Omaha",
+        "city2":    "Chicago",
+        "color1":   "Blue",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "KansasCity",
+        "city2":    "SaintLouis",
+        "color1":   "Blue",
+        "color2":   "Pink",
+        "numTrains": 2
+    },
+    {
+        "city1":    "OklahomaCity",
+        "city2":    "LittleRock",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Dallas",
+        "city2":    "LittleRock",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Houston",
+        "city2":    "NewOrleans",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Chicago",
+        "city2":    "SaintLouis",
+        "color1":   "Green",
+        "color2":   "White",
+        "numTrains": 2
+    },
+    {
+        "city1":    "SaintLouis",
+        "city2":    "LittleRock",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "LittleRock",
+        "city2":    "NewOrleans",
+        "color1":   "Green",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "SaultStMarie",
+        "city2":    "Montreal",
+        "color1":   "Black",
+        "color2":   "None",
+        "numTrains": 5
+    },
+    {
+        "city1":    "SaultStMarie",
+        "city2":    "Toronto",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Chicago",
+        "city2":    "Toronto",
+        "color1":   "White",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Chicago",
+        "city2":    "Pittsburgh",
+        "color1":   "Orange",
+        "color2":   "Black",
+        "numTrains": 3
+    },
+    {
+        "city1":    "SaintLouis",
+        "city2":    "Pittsburgh",
+        "color1":   "Green",
+        "color2":   "None",
+        "numTrains": 5
+    },
+    {
+        "city1":    "SaintLouis",
+        "city2":    "Nashville",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "LittleRock",
+        "city2":    "Nashville",
+        "color1":   "White",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "NewOrleans",
+        "city2":    "Atlanta",
+        "color1":   "Yellow",
+        "color2":   "Orange",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Nashville",
+        "city2":    "Atlanta",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 1
+    },
+    {
+        "city1":    "Nashville",
+        "city2":    "Pittsburgh",
+        "color1":   "Yellow",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Nashville",
+        "city2":    "Raleigh",
+        "color1":   "Black",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Montreal",
+        "city2":    "Toronto",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Toronto",
+        "city2":    "Pittsburgh",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Pittsburgh",
+        "city2":    "Raleigh",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Raleigh",
+        "city2":    "Atlanta",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Atlanta",
+        "city2":    "Miami",
+        "color1":   "Blue",
+        "color2":   "None",
+        "numTrains": 5
+    },
+    {
+        "city1":    "NewOrleans",
+        "city2":    "Miami",
+        "color1":   "Red",
+        "color2":   "None",
+        "numTrains": 6
+    },
+    {
+        "city1":    "Atlanta",
+        "city2":    "Charleston",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Charleston",
+        "city2":    "Miami",
+        "color1":   "Pink",
+        "color2":   "None",
+        "numTrains": 4
+    },
+    {
+        "city1":    "Raleigh",
+        "city2":    "Charleston",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Washington",
+        "city2":    "Raleigh",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Pittsburgh",
+        "city2":    "Washington",
+        "color1":   "Gray",
+        "color2":   "None",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Pittsburgh",
+        "city2":    "NewYork",
+        "color1":   "White",
+        "color2":   "Green",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Montreal",
+        "city2":    "NewYork",
+        "color1":   "Blue",
+        "color2":   "None",
+        "numTrains": 3
+    },
+    {
+        "city1":    "Montreal",
+        "city2":    "Boston",
+        "color1":   "Gray",
+        "color2":   "Gray",
+        "numTrains": 2
+    },
+    {
+        "city1":    "Boston",
+        "city2":    "NewYork",
+        "color1":   "Yellow",
+        "color2":   "Red",
+        "numTrains": 2
+    },
+    {
+        "city1":    "NewYork",
+        "city2":    "Washington",
+        "color1":   "Orange",
+        "color2":   "Black",
+        "numTrains": 2
+    }
+] }
+
