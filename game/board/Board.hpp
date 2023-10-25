@@ -15,4 +15,8 @@ class Board
     {
         // lot to do in here
     }
+
+    PointsT claimRoute()
+    {
+    }
 };

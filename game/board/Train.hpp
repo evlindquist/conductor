@@ -6,6 +6,7 @@ class Train
 {
     Color theColor;
 
+public:
     Train() = delete;
 
     Train(Color aColor)
@@ -16,5 +17,10 @@ class Train
         }
         
         theColor = aColor;
+    }
+
+    Color color()
+    {
+        return theColor;
     }
 };

@@ -2,6 +2,7 @@
 
 #include "game/destinations/DestinationTicket.hpp"
 #include "game/types/Color.hpp"
+#include "game/types/Turn.hpp"
 
 #include <array>
 #include <cstdint>
@@ -9,17 +10,41 @@
 
 class Player
 {
-    using ScoreT = std::uint32_t;
     using NumberTrainsT = std::uint32_t;
 
-    using DestinationsT = std::vector<DestinationTicket>;
     using TrainsT = std::array<Color, NUM_TRAIN_COLORS>;
 
-    ScoreT theScore;
+    PointsT thePoints;
     NumberTrainsT theNumberTrains;
 
     DestinationsT theDestinations;
     TrainsT theTrains;
 
     // how do we implemeent routes / cities in network?
+
+public:
+    Turn takeTurn()
+    {
+    }
+
+    void drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose)
+    {
+    }
+
+    TrainChoice drawTrain(std::size_t aChoiceNumber, TrainOptionsT aOptions, Train aTopDeck)
+    {
+    }
+
+    Route claimRoute()
+    {
+    }
+
+    void increaseScore(PointsT aPoints)
+    {
+        thePoints += aPoints;
+    }
+
+    PointsT tallyPoints()
+    {
+    }
 };
