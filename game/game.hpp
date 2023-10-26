@@ -1,7 +1,5 @@
 #pragma once
 
-#include <submodule/json.hpp>
-
 #include "game/types/Types.hpp"
 
 #include "game/board/Board.hpp"
@@ -20,8 +18,6 @@
 
 static constexpr std::size_t NUM_TRAINS_PER_COLOR = 12;
 static constexpr std::size_t NUM_RAINBOW_TRAINS = 14;
-
-using json = nlohmann::json;
 
 class Game
 {
