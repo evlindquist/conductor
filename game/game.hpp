@@ -13,7 +13,7 @@
 
 #include <vector>
 
-class GameState
+class Game
 {
     using PlayersT = std::vector<Player>;
 
@@ -28,7 +28,7 @@ class GameState
     Player& theTurnTaker;
 
 public:
-    GameState() :
+    Game() :
         theBoard{}
         theTurnTracker{}
     {
@@ -111,7 +111,7 @@ private:
 
         for (std::size_t i = 0; i < 2; i++)
         {
-            TrainChoice myChoice = theTurnTaker.drawTrain(i, myOptions, theTrainsDeck.back());
+            TrainChoice myChoice = theTurnTaker.drawTrain(i, myOptions, theTrainsDeck.back()); // don't send in  top deck, bad for security reasons
             
             if (myChoice == TOP_DECK)
             {
