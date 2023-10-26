@@ -158,5 +158,7 @@ std::ostream& operator<<(std::ostream& os, const City& aCity)
             os << "Charleston";
             break;        
     }
+
+    return os;
 }
 

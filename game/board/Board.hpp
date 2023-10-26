@@ -2,6 +2,9 @@
 
 #include "game/board/Node.hpp"
 #include "game/board/Route.hpp"
+#include "game/gameState/Player.hpp"
+
+#include "game/types/Types.hpp"
 
 class Board
 {
@@ -11,12 +14,14 @@ class Board
     NodesT theNodes;
     RoutesT theRoutes;
 
+public:
     Board()
     {
         // lot to do in here
     }
 
-    PointsT claimRoute()
+    PointsT claimRoute(Route& aRoute, Player& aPlayer)
     {
+        return 0;
     }
 };

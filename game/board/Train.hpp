@@ -2,18 +2,25 @@
 
 #include "game/types/Color.hpp"
 
+#include <stdexcept>
+
+static constexpr std::size_t NUM_TRAINS_PER_COLOR = 12;
+static constexpr std::size_t NUM_RAINBOW_TRAINS = 14;
+
 class Train
 {
     Color theColor;
 
 public:
-    Train() = delete;
-
+    Train()
+    {
+    }
+    
     Train(Color aColor)
     {
         if (aColor == Color::Gray)
         {
-            std::throw();
+            throw std::runtime_error("Trains cannot have the color gray");
         }
         
         theColor = aColor;

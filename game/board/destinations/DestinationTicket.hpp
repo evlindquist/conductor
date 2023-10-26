@@ -2,6 +2,8 @@
 
 #include "game/types/City.hpp"
 
+#include <utility>
+
 class DestinationTicket
 {
 public:
@@ -11,10 +13,12 @@ public:
     RouteT theRoute;
     PointsT thePoints;
 
-    DestinationTicket() = delete;
+    DestinationTicket()
+    {
+    }
 
     DestinationTicket(City aFirstCity, City aSecondCity, PointsT aPoints) : 
-        theRoute{std::make_pair<City, City>(aFirst, aSecondCity)},
+        theRoute{std::make_pair(aFirstCity, aSecondCity)},
         thePoints{aPoints}
     {
     }

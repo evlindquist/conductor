@@ -23,16 +23,32 @@ class Game
     DestinationsT theDestinationsDeck;
     TrainsDeckT theTrainsDeck;
 
+    struct TurnTracker
+    {
+        std::uint32_t theTurnTracker;
+        std::size_t theNumberOfPlayers;
+
+        TurnTracker(std::size_t aNumberOfPlayers) :
+            theTurnTracker{0},
+            theNumberOfPlayers{aNumberOfPlayers}
+        {
+        }
+
+        void next()
+        {
+            theTurnTracker = (theTurnTracker + 1) % theNumberOfPlayers;
+        }
+    };
     TurnTracker theTurnTracker;
 
     Player& theTurnTaker;
 
 public:
     Game() :
-        theBoard{}
-        theTurnTracker{}
+        theBoard{},
+        theTurnTracker{thePlayers.size()},
+        theTurnTaker{thePlayers.at(theTurnTracker.theTurnTracker)}
     {
-        theTurnTaker = thePlayers.at(theTurnTracker.theTurnTracker);
     }
 
     void play()
@@ -77,7 +93,7 @@ private:
             case Turn::DrawTrains:
                 drawTrains();
                 break;
-            case turn::PlaceTrains:
+            case Turn::PlaceTrains:
                 claimRoute();
                 break;
         }
@@ -85,7 +101,7 @@ private:
 
     void endGame()
     {
-        std::for_each(thePlayers.begin(), thePlayers.end(), [](Player& aPlayer) {aPlayer.tallyPoints()} );
+        std::for_each(thePlayers.begin(), thePlayers.end(), [](Player& aPlayer) { aPlayer.tallyPoints(); } );
     }
 
     void drawDestinationTickets(std::size_t aNumberToChoose)
@@ -113,25 +129,25 @@ private:
         {
             TrainChoice myChoice = theTurnTaker.drawTrain(i, myOptions, theTrainsDeck.back()); // don't send in  top deck, bad for security reasons
             
-            if (myChoice == TOP_DECK)
+            if (myChoice == TrainChoice::TOP_DECK)
             {
                 theTrainsDeck.pop_back();
             }
             else
             {
-                Color myTrainColor = theTrainOptions.at(static_cast<std::uint8_t>(myChoice)).color();
+                Color myTrainColor = myOptions.at(static_cast<std::uint8_t>(myChoice)).color();
 
-                theTrainOptions.at(static_cast<std::uint8_t>(myChoice)) = theTrainsDeck.back();
+                myOptions.at(static_cast<std::uint8_t>(myChoice)) = theTrainsDeck.back();
                 theTrainsDeck.pop_back();
 
-                if (myTainColor == Color::Rainbow)
+                if (myTrainColor == Color::Rainbow)
                 {
                     break;
                 }
             }
         }
         
-        theTrainsDeck.insert(theTrainsDeck.end(), myChoices.begin(), myChoices.end());
+        theTrainsDeck.insert(theTrainsDeck.end(), myOptions.begin(), myOptions.end());
     }
 
     void claimRoute()
@@ -141,18 +157,4 @@ private:
        
         theTurnTaker.increaseScore(myPoints);
     }
-
-    struct TurnTracker
-    {
-        std::uint32_t theTurnTracker;
-
-        TurnTracker() : theTurnTracker{0}
-        {
-        }
-
-        void next()
-        {
-            theTurnTracker++ % thePlayers.size();
-        }
-    };
-}
+};

@@ -2,6 +2,8 @@
 
 #include "game/types/Color.hpp"
 
+#include <stdexcept>
+
 class Route
 {
     using LengthT = std::uint32_t;
@@ -11,6 +13,7 @@ class Route
 
     Route() = delete;
 
+public:
     Route(LengthT aLength, Color aColor) :
         theLength{aLength},
         theColor{aColor}
@@ -24,7 +27,7 @@ class Route
             case 1:
                 return 1;
             case 2:
-                return 2:
+                return 2;
             case 3:
                 return 4;
             case 4:
@@ -34,5 +37,7 @@ class Route
             case 6:
                 return 15;
         }
+
+        throw std::runtime_error("Trains can only have length 1-6");
     }
 };
