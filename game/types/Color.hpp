@@ -1,8 +1,9 @@
 #pragma once
 
 #include <cstdint>
+#include <iostream>
 
-static constexpr NUM_TRAIN_COLORS = 9;
+static constexpr std::size_t NUM_TRAIN_COLORS = 9;
 
 enum class Color : std::uint8_t
 {
@@ -18,41 +19,43 @@ enum class Color : std::uint8_t
     Gray
 };
 
-friend std::ostream& operator<<(std::ostream& os, const Color& aColor);
+std::ostream& operator<<(std::ostream& os, const Color& aColor);
 
 std::ostream& operator<<(std::ostream& os, const Color& aColor)
 {
     switch (aColor)
     {
-        case White:
+        case Color::White:
             os << "white";
             break;
-        case Pink:
+        case Color::Pink:
             os << "Pink";
             break;
-        case Red:
+        case Color::Red:
             os << "Red";
             break;
-        case Orange:
+        case Color::Orange:
             os << "Orange";
             break;
-        case Yellow:
+        case Color::Yellow:
             os << "Yellow";
             break;
-        case Green:
+        case Color::Green:
             os << "Green";
             break;
-        case Blue:
+        case Color::Blue:
             os << "Blue";
             break;
-        case Black:
+        case Color::Black:
             os << "Black";
             break;
-        case Rainbow:
+        case Color::Rainbow:
             os << "Rainbow";
             break;
-        case Gray:
+        case Color::Gray:
             os << "Gray";
             break;
     }
+
+    return os;
 }
