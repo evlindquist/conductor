@@ -26,7 +26,7 @@ std::ostream& operator<<(std::ostream& os, const Color& aColor)
     switch (aColor)
     {
         case Color::White:
-            os << "white";
+            os << "White";
             break;
         case Color::Pink:
             os << "Pink";

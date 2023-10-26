@@ -2,10 +2,8 @@
 
 #include "game/types/Color.hpp"
 
+#include <iostream>
 #include <stdexcept>
-
-static constexpr std::size_t NUM_TRAINS_PER_COLOR = 12;
-static constexpr std::size_t NUM_RAINBOW_TRAINS = 14;
 
 class Train
 {
@@ -30,4 +28,13 @@ public:
     {
         return theColor;
     }
+
+    friend std::ostream& operator<<(std::ostream& os, const Train& aTrain);
 };
+
+std::ostream& operator<<(std::ostream& os, const Train& aTrain)
+{
+    os << aTrain.theColor << " Train";
+    return os;
+}
+

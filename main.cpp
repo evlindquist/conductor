@@ -4,5 +4,6 @@
 
 int main()
 {
-    std::cout << "yeehaw" << std::endl;
+    Game myGame{};
+    myGame.play();
 }

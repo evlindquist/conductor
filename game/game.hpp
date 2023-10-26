@@ -6,12 +6,16 @@
 #include "game/board/Route.hpp"
 #include "game/gameState/Player.hpp"
 
+#include "game/board/Deck.hpp"
 #include "game/board/Train.hpp"
 #include "game/board/destinations/DestinationTicket.hpp"
 
 #include "game/types/Turn.hpp"
 
 #include <vector>
+
+static constexpr std::size_t NUM_TRAINS_PER_COLOR = 12;
+static constexpr std::size_t NUM_RAINBOW_TRAINS = 14;
 
 class Game
 {
@@ -20,8 +24,8 @@ class Game
     Board theBoard;
     PlayersT thePlayers;
 
-    DestinationsT theDestinationsDeck;
-    TrainsDeckT theTrainsDeck;
+    Deck<DestinationTicket> theDestinationsDeck;
+    Deck<Train> theTrainsDeck;
 
     struct TurnTracker
     {
@@ -46,6 +50,7 @@ class Game
 public:
     Game() :
         theBoard{},
+        thePlayers{Player{}},
         theTurnTracker{thePlayers.size()},
         theTurnTaker{thePlayers.at(theTurnTracker.theTurnTracker)}
     {
@@ -73,6 +78,8 @@ public:
 private:
     void startGame()
     {
+        initializeDecks();
+
         for (std::size_t i = 0; i < thePlayers.size(); i++)
         {
             theTurnTaker = thePlayers.at(theTurnTracker.theTurnTracker);
@@ -102,6 +109,21 @@ private:
     void endGame()
     {
         std::for_each(thePlayers.begin(), thePlayers.end(), [](Player& aPlayer) { aPlayer.tallyPoints(); } );
+    }
+
+    void initializeDecks()
+    {
+        for (std::size_t i = 0; i < NUM_TRAIN_COLORS; i++)
+        {
+            for (std::size_t j = 0; j < NUM_TRAINS_PER_COLOR; j++)
+            {
+                theTrainsDeck.push_back(Train{static_cast<Color>(i)});
+            }
+        }
+        theTrainsDeck.push_back(Train{Color::Rainbow});
+        theTrainsDeck.push_back(Train{Color::Rainbow});
+
+        theTrainsDeck.shuffle();
     }
 
     void drawDestinationTickets(std::size_t aNumberToChoose)
@@ -147,7 +169,7 @@ private:
             }
         }
         
-        theTrainsDeck.insert(theTrainsDeck.end(), myOptions.begin(), myOptions.end());
+        theTrainsDeck.insert(myOptions);
     }
 
     void claimRoute()

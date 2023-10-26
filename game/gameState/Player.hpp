@@ -25,6 +25,14 @@ class Player
     // how do we implemeent routes / cities in network?
 
 public:
+    Player() :
+        thePoints{0},
+        theNumberTrains{0},
+        theDestinations{},
+        theTrains{}
+    {
+    }
+
     Turn takeTurn()
     {
         return Turn::DrawTrains;
@@ -59,7 +67,7 @@ public:
 
     PointsT tallyPoints()
     {
-        return 0;
+        return thePoints;
     }
 
     NumberTrainsT numberTrains()
