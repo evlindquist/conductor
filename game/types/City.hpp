@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <iostream>
 
 enum class City : std::uint8_t
 {
@@ -42,7 +43,7 @@ enum class City : std::uint8_t
     Charleston
 };
 
-friend std::ostream& operator<<(std::ostream& os, const City& aCity);
+std::ostream& operator<<(std::ostream& os, const City& aCity);
 
 std::ostream& operator<<(std::ostream& os, const City& aCity)
 {
