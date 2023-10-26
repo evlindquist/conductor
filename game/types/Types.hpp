@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/board/destinations/DestinationTicket.hpp"
+#include "game/board/DestinationTicket.hpp"
 #include "game/board/Train.hpp"
 
 #include <array>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/board/destinations/DestinationTicket.hpp"
+#include "game/board/DestinationTicket.hpp"
 #include "game/types/Color.hpp"
 #include "game/types/Turn.hpp"
 #include "game/board/Route.hpp"

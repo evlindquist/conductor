@@ -1,5 +1,7 @@
 #pragma once
 
+#include <submodule/json.hpp>
+
 #include "game/types/Types.hpp"
 
 #include "game/board/Board.hpp"
@@ -8,14 +10,18 @@
 
 #include "game/board/Deck.hpp"
 #include "game/board/Train.hpp"
-#include "game/board/destinations/DestinationTicket.hpp"
+#include "game/board/DestinationTicket.hpp"
 
 #include "game/types/Turn.hpp"
 
+#include <fstream>
+#include <iostream>
 #include <vector>
 
 static constexpr std::size_t NUM_TRAINS_PER_COLOR = 12;
 static constexpr std::size_t NUM_RAINBOW_TRAINS = 14;
+
+using json = nlohmann::json;
 
 class Game
 {
@@ -60,19 +66,19 @@ public:
     {
         startGame();
 
-        while (1 != 0)
-        {
-            next();
+        // while (1 != 0)
+        // {
+        //     next();
 
-            if (theTurnTaker.numberTrains() <= 2)
-            {
-                break; // TODO: need to add one more turn for each player once trian threshold hit
-            }
+        //     if (theTurnTaker.numberTrains() <= 2)
+        //     {
+        //         break; // TODO: need to add one more turn for each player once trian threshold hit
+        //     }
 
-            theTurnTracker.next();
-        }
+        //     theTurnTracker.next();
+        // }
 
-        endGame();
+        // endGame();
     }
 
 private:
@@ -80,12 +86,12 @@ private:
     {
         initializeDecks();
 
-        for (std::size_t i = 0; i < thePlayers.size(); i++)
-        {
-            theTurnTaker = thePlayers.at(theTurnTracker.theTurnTracker);
-            drawDestinationTickets(2);
-            theTurnTracker.next();
-        }
+        // for (std::size_t i = 0; i < thePlayers.size(); i++)
+        // {
+        //     theTurnTaker = thePlayers.at(theTurnTracker.theTurnTracker);
+        //     drawDestinationTickets(2);
+        //     theTurnTracker.next();
+        // }
     }
 
     void next()
@@ -122,8 +128,10 @@ private:
         }
         theTrainsDeck.push_back(Train{Color::Rainbow});
         theTrainsDeck.push_back(Train{Color::Rainbow});
-
         theTrainsDeck.shuffle();
+
+        theDestinationsDeck.insert(myDestinationList);
+        theDestinationsDeck.shuffle();
     }
 
     void drawDestinationTickets(std::size_t aNumberToChoose)

@@ -21,7 +21,7 @@ enum class City : std::uint8_t
     Denver,
     Houston,
     Dallas,
-    OkalahomaCity,
+    OklaahomaCity,
     KansasCity,
     Omaha,
     Duluth,
@@ -97,8 +97,8 @@ std::ostream& operator<<(std::ostream& os, const City& aCity)
         case City::Dallas:
             os << "Dallas";
             break;
-        case City::OkalahomaCity:
-            os << "Okalahoma City";
+        case City::OklaahomaCity:
+            os << "Oklaahoma City";
             break;
         case City::KansasCity:
             os << "Kansas City";
