@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/types/Types.hpp"
 #include "game/types/City.hpp"
 
 #include <utility>
@@ -7,10 +8,10 @@
 class DestinationTicket
 {
 public:
-    using RouteT = std::pair<City, City>;
     using PointsT = std::uint32_t;
+    using CityPairT = std::pair<City, City>;
 
-    RouteT theRoute;
+    CityPairT theCities;
     PointsT thePoints;
 
     DestinationTicket()
@@ -18,7 +19,7 @@ public:
     }
 
     DestinationTicket(City aFirstCity, City aSecondCity, PointsT aPoints) : 
-        theRoute{std::make_pair(aFirstCity, aSecondCity)},
+        theCities{std::make_pair(aFirstCity, aSecondCity)},
         thePoints{aPoints}
     {
     }
@@ -26,7 +27,7 @@ public:
 
 static constexpr std::size_t NUM_DESTINATION_TICKETS = 30;
 
-const std::array<DestinationTicket, NUM_DESTINATION_TICKETS> myDestinationList = {
+const std::array<DestinationTicket, NUM_DESTINATION_TICKETS> theDestionationsList = {
     DestinationTicket{City::Montreal,       City::Atlanta,      9},
     DestinationTicket{City::LosAngeles,     City::NewYork,      21},
     DestinationTicket{City::SanFrancisco,   City::Atlanta,      17},

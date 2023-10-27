@@ -126,7 +126,7 @@ private:
         theTrainsDeck.push_back(Train{Color::Rainbow});
         theTrainsDeck.shuffle();
 
-        theDestinationsDeck.insert(myDestinationList);
+        theDestinationsDeck.insert(theDestionationsList);
         theDestinationsDeck.shuffle();
     }
 

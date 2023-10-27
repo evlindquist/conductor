@@ -16,7 +16,7 @@ public:
     
     Train(Color aColor)
     {
-        if (aColor == Color::Gray)
+        if (aColor == Color::Gray || aColor == Color::None)
         {
             throw std::runtime_error("Trains cannot have the color gray");
         }

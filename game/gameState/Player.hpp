@@ -57,7 +57,7 @@ public:
 
         // return myRoute;
 
-        return Route{0, Color::Blue};
+        return theRoutesList[0];
     }
 
     void increaseScore(PointsT aPoints)

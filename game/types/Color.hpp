@@ -16,7 +16,8 @@ enum class Color : std::uint8_t
     Blue,
     Black,
     Rainbow,
-    Gray
+    Gray,
+    None
 };
 
 std::ostream& operator<<(std::ostream& os, const Color& aColor);
@@ -54,6 +55,9 @@ std::ostream& operator<<(std::ostream& os, const Color& aColor)
             break;
         case Color::Gray:
             os << "Gray";
+            break;
+        case Color::None:
+            os << "None";
             break;
     }
 

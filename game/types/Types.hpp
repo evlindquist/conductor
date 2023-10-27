@@ -7,6 +7,8 @@
 
 using PointsT = std::uint16_t;
 
+using CityPairT = std::pair<City, City>;
+
 using DestinationsT = std::vector<DestinationTicket>;
 using DestinationOptionsT = std::array<DestinationTicket, 3>;
 
