@@ -9,6 +9,7 @@
 
 #include <array>
 #include <cstdint>
+#include <variant>
 #include <vector>
 
 class Player
@@ -45,7 +46,24 @@ public:
 
     DestinationsT drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose)
     {
-        return DestinationsT{};
+        // DestinationChoiceT myChoices = theStrategy.drawDestinationTickets(aOptions);
+        DestinationChoiceT myChoices = DestinationChoiceT{true, true, true};
+
+        DestinationsT myReturnedDestinations{};
+
+        for (std::size_t i = 0; i < aOptions.size(); i++)
+        {
+            if (keepDestination(myChoices, i))
+            {
+                theDestinations.push_back(aOptions.at(i));
+            }
+            else
+            {
+                myReturnedDestinations.push_back(aOptions.at(i));
+            }
+        }
+
+        return myReturnedDestinations;
     }
 
     TrainChoice chooseTrain(std::size_t aChoiceNumber, const TrainOptionsT aOptions)
@@ -102,5 +120,20 @@ public:
     NumberTrainsT numberTrains()
     {
         return theNumberTrains;
+    }
+
+    bool keepDestination(DestinationChoiceT aChoices, std::size_t aIndex)
+    {
+        switch(aIndex)
+        {
+            case 0:
+                return std::get<0>(aChoices);
+            case 1:
+                return std::get<1>(aChoices);
+            case 2:
+                return std::get<2>(aChoices);
+            default:
+                throw std::runtime_error("cannot have more than three choices");
+        }
     }
 };

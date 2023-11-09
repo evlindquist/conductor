@@ -1,6 +1,8 @@
 #pragma once
 
 #include <array>
+#include <tuple>
+#include <vector>
 
 using PointsT = std::uint16_t;
 
@@ -10,6 +12,7 @@ using CityPairT = std::pair<City, City>;
 #include "game/board/DestinationTicket.hpp"
 using DestinationsT = std::vector<DestinationTicket>;
 using DestinationOptionsT = std::array<DestinationTicket, 3>;
+using DestinationChoiceT = std::tuple<bool, bool, bool>;
 
 #include "game/board/Train.hpp"
 using TrainsDeckT = std::vector<Train>;
