@@ -23,7 +23,7 @@ public:
         initializeDecks();
     }
 
-    RoutesT& routes()
+    const RoutesT& routes()
     {
         return theRoutesList;
     }
@@ -95,7 +95,7 @@ private:
         theDestinationsDeck.shuffle();
     }
 
-    RoutesT theRoutesList = {
+    const RoutesT theRoutesList = {
         Route{City::Vancouver,      City::Seattle,          Color::Gray,    Color::Gray,    1 },
         Route{City::Vancouver,      City::Calgary,          Color::Gray,    Color::None,    3 },
         Route{City::Seattle,        City::Calgary,          Color::Gray,    Color::None,    4 },

@@ -17,4 +17,4 @@ using TrainOptionsT = std::array<Train, 5>;
 
 #include "game/board/Route.hpp"
 static constexpr std::size_t NUM_ROUTES = 78;
-using RoutesT = const std::array<Route, NUM_ROUTES>;
+using RoutesT = std::array<Route, NUM_ROUTES>;

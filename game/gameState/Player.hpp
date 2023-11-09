@@ -17,6 +17,8 @@ class Player
 
     using TrainsT = std::array<NumberTrainsT, NUM_TRAIN_COLORS>;
 
+    PlayerId thePlayerId;
+
     PointsT thePoints;
     NumberTrainsT theNumberTrains;
 
@@ -27,6 +29,7 @@ class Player
 
 public:
     Player() :
+        thePlayerId{},
         thePoints{0},
         theNumberTrains{0},
         theDestinations{},
@@ -56,14 +59,25 @@ public:
         theTrains.at(static_cast<std::size_t>(aTrain.color())) += 1;
     }
 
-    Route claimRoute(RoutesT aRoutes)
+    Route& claimRoute(RoutesT aRoutes)
     {
         // Route myRoute = theStrategy.claimRoute();
-        // increaseScore(myRoute.points());
 
-        // return myRoute;
+        Route& myRoute = aRoutes.at(0);
 
-        return aRoutes[0];
+        if (!myRoute.claimable())
+        {
+            throw std::runtime_error("Trying to claim already claimed route");
+        }
+
+        myRoute.claim(thePlayerId);
+
+        theCitiesInNetwork.push_back(myRoute.cities().first);
+        theCitiesInNetwork.push_back(myRoute.cities().second);
+
+        increaseScore(myRoute.points());
+
+        return myRoute;
     }
 
     void increaseScore(PointsT aPoints)

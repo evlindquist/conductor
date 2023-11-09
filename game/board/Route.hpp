@@ -11,9 +11,9 @@ class Route
     using LengthT = std::uint32_t;
     using ColorPairT = std::pair<Color, Color>;
 
-    CityPairT theCities;
-    ColorPairT theColors;
-    LengthT theLength;
+    const CityPairT theCities;
+    const ColorPairT theColors;
+    const LengthT theLength;
 
     PlayerId thePlayer{PlayerId::None};
 
@@ -25,6 +25,11 @@ public:
         theColors{std::make_pair(aFirstColor, aSecondColor)},
         theLength{aLength}
     {
+    }
+
+    CityPairT cities()
+    {
+        return theCities;
     }
 
     bool claimable()
