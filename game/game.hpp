@@ -43,12 +43,16 @@ class Game
     Player& theTurnTaker;
 
 public:
-    Game() :
+    Game(std::size_t aNumberOfPlayers) :
         theBoard{},
-        thePlayers{Player{}},
+        thePlayers{},
         theTurnTracker{thePlayers.size()},
         theTurnTaker{thePlayers.at(theTurnTracker.theTurnTracker)}
     {
+        for (std::size_t i = 0; i < aNumberOfPlayers; i++)
+        {
+            thePlayers.push_back(Player{static_cast<PlayerId>(i)});
+        }
     }
 
     void play()

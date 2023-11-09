@@ -25,15 +25,16 @@ class Player
     DestinationsT theDestinations;
     TrainsT theTrains;
 
-    std::vector<City> theCitiesInNetwork{};
+    std::vector<City> theCitiesInNetwork;
 
 public:
-    Player() :
-        thePlayerId{},
+    Player(PlayerId aPlayerId) :
+        thePlayerId{aPlayerId},
         thePoints{0},
         theNumberTrains{0},
         theDestinations{},
-        theTrains{}
+        theTrains{},
+        theCitiesInNetwork{}
     {
     }
 

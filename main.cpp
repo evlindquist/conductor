@@ -4,6 +4,6 @@
 
 int main()
 {
-    Game myGame{};
+    Game myGame{1};
     myGame.play();
 }
