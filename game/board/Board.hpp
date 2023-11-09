@@ -33,7 +33,7 @@ public:
         return theTrainOptions;
     }
 
-    DestinationOptionsT drawDestinationTickets()
+    DestinationOptionsT destinationTickets()
     {
         DestinationOptionsT myOptions{};
         for (std::size_t i = 0; i < myOptions.size(); i++)
@@ -43,6 +43,11 @@ public:
         }
 
         return myOptions;
+    }
+
+    void returnDestinations(DestinationsT aReturnedDestinations)
+    {
+        theDestinationsDeck.insert(aReturnedDestinations);
     }
 
     Train drawTrain(TrainChoice aChoice)

@@ -5,6 +5,7 @@
 #include "game/types/Turn.hpp"
 #include "game/board/Route.hpp"
 #include "game/board/Train.hpp"
+#include "game/types/Types.hpp"
 
 #include <array>
 #include <cstdint>
@@ -38,8 +39,9 @@ public:
         return Turn::DrawTrains;
     }
 
-    void drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose)
+    DestinationsT drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose)
     {
+        return DestinationsT{};
     }
 
     TrainChoice chooseTrain(std::size_t aChoiceNumber, const TrainOptionsT aOptions)

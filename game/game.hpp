@@ -106,7 +106,8 @@ private:
 
     void drawDestinationTickets(std::size_t aNumberToChoose)
     {
-        theTurnTaker.drawDestinationTickets(theBoard.drawDestinationTickets(), aNumberToChoose);
+        DestinationsT myReturnedDestinations = theTurnTaker.drawDestinationTickets(theBoard.destinationTickets(), aNumberToChoose);
+        theBoard.returnDestinations(myReturnedDestinations);
     }
 
     void drawTrains()
