@@ -24,7 +24,7 @@ public:
         theColor = aColor;
     }
 
-    Color color()
+    Color color() const
     {
         return theColor;
     }

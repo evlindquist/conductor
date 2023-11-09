@@ -50,9 +50,18 @@ public:
 
     TrainChoice chooseTrain(std::size_t aChoiceNumber, const TrainOptionsT aOptions)
     {
-        // return theStrategy.drawTrain(aChoiceNumber, aOptions, aTopDeck);
+        // TrainChoice myChoice = theStrategy.drawTrain(aChoiceNumber, aOptions, aTopDeck);
+        TrainChoice myChoice = TrainChoice::TOP_DECK;
+
+        if (aChoiceNumber != 0 && myChoice != TrainChoice::TOP_DECK)
+        {
+            if (aOptions.at(static_cast<std::size_t>(myChoice)).color() == Color::Rainbow)
+            {
+                throw std::runtime_error("You cannot choose a rainbow train on second train choice");
+            }
+        }
         
-        return TrainChoice::TOP_DECK;
+        return myChoice;
     }
 
     void acceptTrain(Train aTrain)
@@ -63,7 +72,6 @@ public:
     Route& claimRoute(RoutesT aRoutes)
     {
         // Route myRoute = theStrategy.claimRoute();
-
         Route& myRoute = aRoutes.at(0);
 
         if (!myRoute.claimable())
