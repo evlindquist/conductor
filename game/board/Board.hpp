@@ -78,12 +78,11 @@ private:
         {
             for (std::size_t j = 0; j < NUM_TRAINS_PER_COLOR; j++)
             {
-                theTrainsDeck.push_back(Train{static_cast<Color>(i)});
+                theTrainsDeck.insert(Train{static_cast<Color>(i)});
             }
         }
-        theTrainsDeck.push_back(Train{Color::Rainbow});
-        theTrainsDeck.push_back(Train{Color::Rainbow});
-        theTrainsDeck.shuffle();
+        theTrainsDeck.insert(Train{Color::Rainbow});
+        theTrainsDeck.insert(Train{Color::Rainbow});
 
         for (std::size_t i = 0; i < theTrainOptions.size(); i++)
         {
@@ -92,7 +91,6 @@ private:
         }
 
         theDestinationsDeck.insert(theDestionationsList);
-        theDestinationsDeck.shuffle();
     }
 
     const RoutesT theRoutesList = {
