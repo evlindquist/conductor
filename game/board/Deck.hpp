@@ -14,21 +14,11 @@ class Deck
     std::mt19937_64 theShuffler{theRandom()};
 
 public:
-    CardT at(std::size_t aIndex)
+    CardT draw()
     {
-        return theDeck.at(aIndex);
-    }
-
-    CardT back()
-    {
-        checkNeedToShuffle();
-        return theDeck.back();
-    }
-
-    void pop_back()
-    {
-        checkNeedToShuffle();
+        CardT myCard = theDeck.back();
         theDeck.pop_back();
+        return myCard;
     }
     
     std::size_t size()

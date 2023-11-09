@@ -38,8 +38,7 @@ public:
         DestinationOptionsT myOptions{};
         for (std::size_t i = 0; i < myOptions.size(); i++)
         {
-            myOptions.at(i) = theDestinationsDeck.back();
-            theDestinationsDeck.pop_back();
+            myOptions.at(i) = theDestinationsDeck.draw();
         }
 
         return myOptions;
@@ -54,8 +53,7 @@ public:
     {
         if (aChoice == TrainChoice::TOP_DECK)
         {
-            Train myTopDeck = theTrainsDeck.back();
-            theTrainsDeck.pop_back();
+            Train myTopDeck = theTrainsDeck.draw();
 
             return myTopDeck;
         }
@@ -64,8 +62,7 @@ public:
             Train& myChoice = theTrainOptions.at(static_cast<std::size_t>(aChoice));
             Train myTrain = myChoice;
 
-            myChoice = theTrainsDeck.back();
-            theTrainsDeck.pop_back();
+            myChoice = theTrainsDeck.draw();
 
             return myTrain;
         }
@@ -86,8 +83,7 @@ private:
 
         for (std::size_t i = 0; i < theTrainOptions.size(); i++)
         {
-            theTrainOptions.at(i) = theTrainsDeck.back();
-            theTrainsDeck.pop_back();
+            theTrainOptions.at(i) = theTrainsDeck.draw();
         }
 
         theDestinationsDeck.insert(theDestionationsList);
