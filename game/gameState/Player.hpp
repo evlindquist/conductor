@@ -63,6 +63,11 @@ public:
             }
         }
 
+        if (aOptions.size() - myReturnedDestinations.size() < aNumberToChoose)
+        {
+            throw std::runtime_error("too few destinations kept.");
+        }
+
         return myReturnedDestinations;
     }
 
