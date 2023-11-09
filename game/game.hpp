@@ -6,7 +6,6 @@
 #include "game/board/Route.hpp"
 #include "game/gameState/Player.hpp"
 
-#include "game/board/Deck.hpp"
 #include "game/board/Train.hpp"
 #include "game/board/DestinationTicket.hpp"
 
@@ -16,18 +15,12 @@
 #include <iostream>
 #include <vector>
 
-static constexpr std::size_t NUM_TRAINS_PER_COLOR = 12;
-static constexpr std::size_t NUM_RAINBOW_TRAINS = 14;
-
 class Game
 {
     using PlayersT = std::vector<Player>;
 
     Board theBoard;
     PlayersT thePlayers;
-
-    Deck<DestinationTicket> theDestinationsDeck;
-    Deck<Train> theTrainsDeck;
 
     struct TurnTracker
     {
@@ -80,8 +73,6 @@ public:
 private:
     void startGame()
     {
-        initializeDecks();
-
         // for (std::size_t i = 0; i < thePlayers.size(); i++)
         // {
         //     theTurnTaker = thePlayers.at(theTurnTracker.theTurnTracker);
@@ -113,74 +104,28 @@ private:
         std::for_each(thePlayers.begin(), thePlayers.end(), [](Player& aPlayer) { aPlayer.tallyPoints(); } );
     }
 
-    void initializeDecks()
-    {
-        for (std::size_t i = 0; i < NUM_TRAIN_COLORS; i++)
-        {
-            for (std::size_t j = 0; j < NUM_TRAINS_PER_COLOR; j++)
-            {
-                theTrainsDeck.push_back(Train{static_cast<Color>(i)});
-            }
-        }
-        theTrainsDeck.push_back(Train{Color::Rainbow});
-        theTrainsDeck.push_back(Train{Color::Rainbow});
-        theTrainsDeck.shuffle();
-
-        theDestinationsDeck.insert(theDestionationsList);
-        theDestinationsDeck.shuffle();
-    }
-
     void drawDestinationTickets(std::size_t aNumberToChoose)
     {
-        DestinationOptionsT myOptions{};
-        for (std::size_t i = 0; i < myOptions.size(); i++)
-        {
-            myOptions.at(i) = theDestinationsDeck.back();
-            theDestinationsDeck.pop_back();
-        }
-
-        theTurnTaker.drawDestinationTickets(myOptions, aNumberToChoose);
+        theTurnTaker.drawDestinationTickets(theBoard.drawDestinationTickets(), aNumberToChoose);
     }
 
     void drawTrains()
     {
-        TrainOptionsT myOptions{};
-        for (std::size_t i = 0; i < myOptions.size(); i++)
-        {
-            myOptions.at(i) = theTrainsDeck.back();
-            theTrainsDeck.pop_back();
-        }
-
         for (std::size_t i = 0; i < 2; i++)
         {
-            TrainChoice myChoice = theTurnTaker.drawTrain(i, myOptions, theTrainsDeck.back()); // don't send in  top deck, bad for security reasons
-            
-            if (myChoice == TrainChoice::TOP_DECK)
-            {
-                theTrainsDeck.pop_back();
-            }
-            else
-            {
-                Color myTrainColor = myOptions.at(static_cast<std::uint8_t>(myChoice)).color();
+            TrainChoice myChoice = theTurnTaker.chooseTrain(i, theBoard.trains());
+            Train myTrain = theBoard.drawTrain(myChoice);
+            theTurnTaker.acceptTrain(myTrain);
 
-                myOptions.at(static_cast<std::uint8_t>(myChoice)) = theTrainsDeck.back();
-                theTrainsDeck.pop_back();
-
-                if (myTrainColor == Color::Rainbow)
-                {
-                    break;
-                }
+            if (myChoice != TrainChoice::TOP_DECK && myTrain.color() == Color::Rainbow)
+            {
+                break;
             }
         }
-        
-        theTrainsDeck.insert(myOptions);
     }
 
     void claimRoute()
     {
-        Route myRoute = theTurnTaker.claimRoute();
-        PointsT myPoints = theBoard.claimRoute(myRoute, theTurnTaker);
-       
-        theTurnTaker.increaseScore(myPoints);
+        theTurnTaker.claimRoute(theBoard.routes());       
     }
 };

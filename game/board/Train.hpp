@@ -18,7 +18,7 @@ public:
     {
         if (aColor == Color::Gray || aColor == Color::None)
         {
-            throw std::runtime_error("Trains cannot have the color gray");
+            throw std::runtime_error("Trains cannot have the color gray or none");
         }
         
         theColor = aColor;

@@ -22,7 +22,7 @@ class Player
     DestinationsT theDestinations;
     TrainsT theTrains;
 
-    // how do we implemeent routes / cities in network?
+    std::vector<City> theCitiesInNetwork{};
 
 public:
     Player() :
@@ -42,22 +42,26 @@ public:
     {
     }
 
-    TrainChoice drawTrain(std::size_t aChoiceNumber, const TrainOptionsT aOptions, Train aTopDeck)
+    TrainChoice chooseTrain(std::size_t aChoiceNumber, const TrainOptionsT aOptions)
     {
-        // Train myTrain = theStrategy.drawTrain(aChoiceNumber, aOptions, aTopDeck);
-        // theTrains.at(static_cast<std::uint8_t>(0)) += 1;
+        // return theStrategy.drawTrain(aChoiceNumber, aOptions, aTopDeck);
         
         return TrainChoice::TOP_DECK;
     }
 
-    Route claimRoute()
+    void acceptTrain(Train aTrain)
+    {
+        theTrains.at(static_cast<std::size_t>(aTrain.color())) += 1;
+    }
+
+    Route claimRoute(RoutesT aRoutes)
     {
         // Route myRoute = theStrategy.claimRoute();
         // increaseScore(myRoute.points());
 
         // return myRoute;
 
-        return theRoutesList[0];
+        return aRoutes[0];
     }
 
     void increaseScore(PointsT aPoints)

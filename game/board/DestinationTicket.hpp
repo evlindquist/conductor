@@ -8,9 +8,6 @@
 class DestinationTicket
 {
 public:
-    using PointsT = std::uint32_t;
-    using CityPairT = std::pair<City, City>;
-
     CityPairT theCities;
     PointsT thePoints;
 
