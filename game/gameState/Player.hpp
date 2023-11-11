@@ -15,7 +15,6 @@
 
 class Player
 {
-    using NumberTrainsT = std::uint32_t;
     using DrawnTrainsT = std::array<NumberTrainsT, NUM_TRAIN_COLORS>;
 
     PlayerId thePlayerId;

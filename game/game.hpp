@@ -37,17 +37,23 @@ public:
 
     PlayerId play()
     {
-        // while (1 != 0)
-        // {
-        //     next();
+        while (1 != 0)
+        {
+            takeTurn();
 
-        //     if (theTurnTaker.numberTrains() <= 2)
-        //     {
-        //         break; // TODO: need to add one more turn for each player once trian threshold hit
-        //     }
+            if (theTurnTaker->numberTrains() <= 2)
+            {
+                break;
+            }
 
-        //     theTurnTracker.next();
-        // }
+            endTurn();
+        }
+
+        for (std::size_t i = 0; i < thePlayers.size(); i++)
+        {
+            takeTurn();
+            endTurn();
+        }
 
         return endGame();
     }
@@ -67,7 +73,10 @@ private:
                 claimRoute();
                 break;
         }
+    }
 
+    void endTurn()
+    {
         theTurnTaker++;
         if (theTurnTaker == thePlayers.end())
         {

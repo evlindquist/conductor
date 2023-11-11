@@ -6,6 +6,7 @@
 
 using PointsT = std::uint16_t;
 using LengthT = std::uint32_t;
+using NumberTrainsT = std::uint32_t;
 
 #include "game/types/City.hpp"
 #include "game/types/Color.hpp"
