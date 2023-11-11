@@ -7,18 +7,26 @@
 
 class DestinationTicket
 {
-public:
     CityPairT theCities;
     PointsT thePoints;
 
-    DestinationTicket()
-    {
-    }
+    DestinationTicket() = delete;
 
+public:
     DestinationTicket(City aFirstCity, City aSecondCity, PointsT aPoints) : 
         theCities{std::make_pair(aFirstCity, aSecondCity)},
         thePoints{aPoints}
     {
+    }
+
+    CityPairT& cities()
+    {
+        return theCities;
+    }
+
+    PointsT points()
+    {
+        return thePoints;
     }
 };
 

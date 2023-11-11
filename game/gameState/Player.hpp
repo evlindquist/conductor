@@ -9,13 +9,13 @@
 
 #include <array>
 #include <cstdint>
+#include <unordered_set>
 #include <variant>
 #include <vector>
 
 class Player
 {
     using NumberTrainsT = std::uint32_t;
-
     using DrawnTrainsT = std::array<NumberTrainsT, NUM_TRAIN_COLORS>;
 
     PlayerId thePlayerId;
@@ -26,7 +26,7 @@ class Player
     DestinationsT theDestinations;
     DrawnTrainsT theTrains;
 
-    std::vector<City> theCitiesInNetwork;
+    std::unordered_set<City> theCitiesInNetwork;
 
 public:
     Player(PlayerId aPlayerId) :
@@ -124,21 +124,28 @@ public:
 
         myRoute.claim(thePlayerId);
 
-        theCitiesInNetwork.push_back(myRoute.cities().first);
-        theCitiesInNetwork.push_back(myRoute.cities().second);
+        theCitiesInNetwork.insert(myRoute.cities().first);
+        theCitiesInNetwork.insert(myRoute.cities().second);
 
-        increaseScore(myRoute.points());
+        thePoints += myRoute.points();
 
         return myTrainsToClaim;
     }
 
-    void increaseScore(PointsT aPoints)
-    {
-        thePoints += aPoints;
-    }
-
     PointsT tallyPoints()
     {
+        for (DestinationsT::iterator myDestination = theDestinations.begin(); myDestination != theDestinations.end(); myDestination++)
+        {
+            if (theCitiesInNetwork.count(myDestination->cities().first) && theCitiesInNetwork.count(myDestination->cities().second))
+            {
+                thePoints += myDestination->points();
+            }
+            else
+            {
+                thePoints -= myDestination->points();
+            }
+        }
+        
         return thePoints;
     }
 

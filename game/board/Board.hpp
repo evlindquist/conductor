@@ -35,13 +35,7 @@ public:
 
     DestinationOptionsT destinationTickets()
     {
-        DestinationOptionsT myOptions{};
-        for (std::size_t i = 0; i < myOptions.size(); i++)
-        {
-            myOptions.at(i) = theDestinationsDeck.draw();
-        }
-
-        return myOptions;
+        return DestinationOptionsT{theDestinationsDeck.draw(), theDestinationsDeck.draw(), theDestinationsDeck.draw()};
     }
 
     void returnDestinations(DestinationsT aReturnedDestinations)

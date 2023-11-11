@@ -49,7 +49,7 @@ public:
         //     theTurnTracker.next();
         // }
 
-        // endGame();
+        endGame();
     }
 
 private:
