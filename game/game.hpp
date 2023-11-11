@@ -21,32 +21,13 @@ class Game
     Board theBoard;
     PlayersT thePlayers;
 
-    struct TurnTracker
-    {
-        std::uint32_t theTurnTracker;
-        std::size_t theNumberOfPlayers;
-
-        TurnTracker(std::size_t aNumberOfPlayers) :
-            theTurnTracker{0},
-            theNumberOfPlayers{aNumberOfPlayers}
-        {
-        }
-
-        void next()
-        {
-            theTurnTracker = (theTurnTracker + 1) % theNumberOfPlayers;
-        }
-    };
-    TurnTracker theTurnTracker;
-
-    Player& theTurnTaker;
+    PlayersT::iterator theTurnTaker;
 
 public:
     Game(std::size_t aNumberOfPlayers) :
         theBoard{},
         thePlayers{},
-        theTurnTracker{thePlayers.size()},
-        theTurnTaker{thePlayers.at(theTurnTracker.theTurnTracker)}
+        theTurnTaker{thePlayers.begin()}
     {
         for (std::size_t i = 0; i < aNumberOfPlayers; i++)
         {
@@ -56,8 +37,6 @@ public:
 
     void play()
     {
-        startGame();
-
         // while (1 != 0)
         // {
         //     next();
@@ -74,21 +53,9 @@ public:
     }
 
 private:
-    void startGame()
+    void takeTurn()
     {
-        // for (std::size_t i = 0; i < thePlayers.size(); i++)
-        // {
-        //     theTurnTaker = thePlayers.at(theTurnTracker.theTurnTracker);
-        //     drawDestinationTickets(2);
-        //     theTurnTracker.next();
-        // }
-    }
-
-    void next()
-    {
-        theTurnTaker = thePlayers.at(theTurnTracker.theTurnTracker);
-
-        switch (theTurnTaker.takeTurn())
+        switch (theTurnTaker->takeTurn())
         {
             case Turn::DrawDestinationTickets:
                 drawDestinationTickets(1);
@@ -100,6 +67,12 @@ private:
                 claimRoute();
                 break;
         }
+
+        theTurnTaker++;
+        if (theTurnTaker == thePlayers.end())
+        {
+            theTurnTaker = thePlayers.begin();
+        }
     }
 
     void endGame()
@@ -109,7 +82,7 @@ private:
 
     void drawDestinationTickets(std::size_t aNumberToChoose)
     {
-        DestinationsT myReturnedDestinations = theTurnTaker.drawDestinationTickets(theBoard.destinationTickets(), aNumberToChoose);
+        DestinationsT myReturnedDestinations = theTurnTaker->drawDestinationTickets(theBoard.destinationTickets(), aNumberToChoose);
         theBoard.returnDestinations(myReturnedDestinations);
     }
 
@@ -117,9 +90,9 @@ private:
     {
         for (std::size_t i = 0; i < 2; i++)
         {
-            TrainChoice myChoice = theTurnTaker.chooseTrain(i, theBoard.trains());
+            TrainChoice myChoice = theTurnTaker->chooseTrain(i, theBoard.trains());
             Train myTrain = theBoard.drawTrain(myChoice);
-            theTurnTaker.acceptTrain(myTrain);
+            theTurnTaker->acceptTrain(myTrain);
 
             if (myChoice != TrainChoice::TOP_DECK && myTrain.color() == Color::Rainbow)
             {
@@ -130,7 +103,7 @@ private:
 
     void claimRoute()
     {
-        TrainsT myReturnedTrains = theTurnTaker.claimRoute(theBoard.routes());
+        TrainsT myReturnedTrains = theTurnTaker->claimRoute(theBoard.routes());
         theBoard.returnTrains(myReturnedTrains);
     }
 };
