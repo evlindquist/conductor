@@ -31,7 +31,7 @@ public:
     Player(PlayerId aPlayerId) :
         thePlayerId{aPlayerId},
         thePoints{0},
-        theNumberTrains{0},
+        theNumberTrains{40},
         theDestinations{},
         theTrains{},
         theCitiesInNetwork{}
@@ -106,6 +106,12 @@ public:
         {
             throw std::runtime_error("Trying to claim already claimed route");
         }
+        if (theNumberTrains < myRoute.length())
+        {
+            throw std::runtime_error("Not enough trains to claim route");
+        }
+
+        theNumberTrains -= myRoute.length();
 
         TrainsT myTrainsToClaim{};
         for (std::size_t i = 0; i < myRoute.length(); i++)
