@@ -5,5 +5,5 @@
 int main()
 {
     Game myGame{1};
-    myGame.play();
+    std::cout << "The winning player is " << myGame.play() << std::endl;
 }

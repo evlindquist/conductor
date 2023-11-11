@@ -35,7 +35,7 @@ public:
         }
     }
 
-    void play()
+    PlayerId play()
     {
         // while (1 != 0)
         // {
@@ -49,7 +49,7 @@ public:
         //     theTurnTracker.next();
         // }
 
-        endGame();
+        return endGame();
     }
 
 private:
@@ -75,9 +75,21 @@ private:
         }
     }
 
-    void endGame()
+    PlayerId endGame()
     {
-        std::for_each(thePlayers.begin(), thePlayers.end(), [](Player& aPlayer) { aPlayer.tallyPoints(); } );
+        PlayerId theWinningPlayer = PlayerId::None;
+        PointsT theHighestPoints = 0;
+        for (auto& myPlayer : thePlayers)
+        {
+            PointsT myPlayersPoints = myPlayer.tallyPoints();
+            if (myPlayersPoints > theHighestPoints)
+            {
+                theHighestPoints = myPlayersPoints;
+                theWinningPlayer = myPlayer.id();
+            }
+        }
+
+        return theWinningPlayer;
     }
 
     void drawDestinationTickets(std::size_t aNumberToChoose)

@@ -39,6 +39,11 @@ public:
     {
     }
 
+    PlayerId id()
+    {
+        return thePlayerId;
+    }
+
     Turn takeTurn()
     {
         return Turn::DrawTrains;
@@ -134,18 +139,21 @@ public:
 
     PointsT tallyPoints()
     {
-        for (DestinationsT::iterator myDestination = theDestinations.begin(); myDestination != theDestinations.end(); myDestination++)
-        {
-            if (theCitiesInNetwork.count(myDestination->cities().first) && theCitiesInNetwork.count(myDestination->cities().second))
+        std::for_each(theDestinations.begin(), theDestinations.end(),
+            [this] (DestinationTicket& aDestination)
             {
-                thePoints += myDestination->points();
+                CityPairT theCities = aDestination.cities();
+                if (theCitiesInNetwork.count(theCities.first) && theCitiesInNetwork.count(theCities.second))
+                {
+                    thePoints += aDestination.points();
+                }
+                else
+                {
+                    thePoints -= aDestination.points();
+                }
             }
-            else
-            {
-                thePoints -= myDestination->points();
-            }
-        }
-        
+        );
+
         return thePoints;
     }
 
