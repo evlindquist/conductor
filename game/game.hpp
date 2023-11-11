@@ -7,7 +7,6 @@
 #include "game/gameState/Player.hpp"
 
 #include "game/board/Train.hpp"
-#include "game/board/DestinationTicket.hpp"
 
 #include "game/types/Turn.hpp"
 
@@ -131,6 +130,7 @@ private:
 
     void claimRoute()
     {
-        theTurnTaker.claimRoute(theBoard.routes());       
+        TrainsT myReturnedTrains = theTurnTaker.claimRoute(theBoard.routes());
+        theBoard.returnTrains(myReturnedTrains);
     }
 };

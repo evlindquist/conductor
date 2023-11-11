@@ -49,6 +49,11 @@ public:
         theDestinationsDeck.insert(aReturnedDestinations);
     }
 
+    void returnTrains(TrainsT aReturnedTrains)
+    {
+        theTrainsDeck.insert(aReturnedTrains);
+    }
+
     Train drawTrain(TrainChoice aChoice)
     {
         if (aChoice == TrainChoice::TOP_DECK)

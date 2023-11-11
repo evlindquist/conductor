@@ -16,7 +16,7 @@ class Player
 {
     using NumberTrainsT = std::uint32_t;
 
-    using TrainsT = std::array<NumberTrainsT, NUM_TRAIN_COLORS>;
+    using DrawnTrainsT = std::array<NumberTrainsT, NUM_TRAIN_COLORS>;
 
     PlayerId thePlayerId;
 
@@ -24,7 +24,7 @@ class Player
     NumberTrainsT theNumberTrains;
 
     DestinationsT theDestinations;
-    TrainsT theTrains;
+    DrawnTrainsT theTrains;
 
     std::vector<City> theCitiesInNetwork;
 
@@ -92,14 +92,34 @@ public:
         theTrains.at(static_cast<std::size_t>(aTrain.color())) += 1;
     }
 
-    Route& claimRoute(RoutesT aRoutes)
+    TrainsT claimRoute(RoutesT aRoutes)
     {
         // Route myRoute = theStrategy.claimRoute();
         Route& myRoute = aRoutes.at(0);
+        Color myTrainColor = myRoute.colors().first;
 
         if (!myRoute.claimable())
         {
             throw std::runtime_error("Trying to claim already claimed route");
+        }
+
+        TrainsT myTrainsToClaim{};
+        for (std::size_t i = 0; i < myRoute.length(); i++)
+        {
+            if (theTrains.at(static_cast<std::size_t>(myTrainColor)) > 0)
+            {
+                theTrains.at(static_cast<std::size_t>(myTrainColor)) -= 1;
+                myTrainsToClaim.push_back(Train{myTrainColor});
+            }
+            else if (theTrains.at(static_cast<std::size_t>(Color::Rainbow)) > 0)
+            {
+                theTrains.at(static_cast<std::size_t>(Color::Rainbow)) -= 1;
+                myTrainsToClaim.push_back(Train{Color::Rainbow});
+            }
+            else
+            {
+                throw std::runtime_error("Not enough trains to claim routes");
+            }
         }
 
         myRoute.claim(thePlayerId);
@@ -109,7 +129,7 @@ public:
 
         increaseScore(myRoute.points());
 
-        return myRoute;
+        return myTrainsToClaim;
     }
 
     void increaseScore(PointsT aPoints)

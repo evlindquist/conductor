@@ -8,9 +8,6 @@
 
 class Route
 {
-    using LengthT = std::uint32_t;
-    using ColorPairT = std::pair<Color, Color>;
-
     const CityPairT theCities;
     const ColorPairT theColors;
     const LengthT theLength;
@@ -30,6 +27,16 @@ public:
     CityPairT cities()
     {
         return theCities;
+    }
+
+    ColorPairT colors()
+    {
+        return theColors;
+    }
+
+    LengthT length()
+    {
+        return theLength;
     }
 
     bool claimable()
