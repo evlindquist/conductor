@@ -6,6 +6,10 @@
 #include "game/board/Route.hpp"
 #include "game/board/Train.hpp"
 #include "game/types/Types.hpp"
+#include "game/types/ClaimedRoute.hpp"
+
+#include "strategy/StrategyBase.hpp"
+#include "strategy/Human/HumanStrategy.hpp"
 
 #include <array>
 #include <cstdint>
@@ -27,6 +31,8 @@ class Player
 
     std::unordered_set<City> theCitiesInNetwork;
 
+    StrategyBase theStrategy;
+    
 public:
     Player(PlayerId aPlayerId) :
         thePlayerId{aPlayerId},
@@ -34,7 +40,8 @@ public:
         theNumberTrains{40},
         theDestinations{},
         theTrains{},
-        theCitiesInNetwork{}
+        theCitiesInNetwork{},
+        theStrategy{HumanStrategy{}}
     {
     }
 
@@ -50,8 +57,7 @@ public:
 
     DestinationsT drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose)
     {
-        // DestinationChoiceT myChoices = theStrategy.drawDestinationTickets(aOptions);
-        DestinationChoiceT myChoices = DestinationChoiceT{true, true, true};
+        DestinationChoiceT myChoices = theStrategy.drawDestinationTickets(aOptions, aNumberToChoose);
 
         DestinationsT myReturnedDestinations{};
 
@@ -77,8 +83,7 @@ public:
 
     TrainChoice chooseTrain(std::size_t aChoiceNumber, const TrainOptionsT aOptions)
     {
-        // TrainChoice myChoice = theStrategy.drawTrain(aChoiceNumber, aOptions, aTopDeck);
-        TrainChoice myChoice = TrainChoice::TOP_DECK;
+        TrainChoice myChoice = theStrategy.chooseTrain(aChoiceNumber, aOptions);
 
         if (aChoiceNumber != 0 && myChoice != TrainChoice::TOP_DECK)
         {
@@ -98,11 +103,9 @@ public:
 
     TrainsT claimRoute(RoutesT aRoutes)
     {
-        // Route myRoute = theStrategy.claimRoute();
-        Route& myRoute = aRoutes.at(0);
-        Color myTrainColor = myRoute.colors().first;
+        ClaimedRoute myRoute = theStrategy.claimRoute(aRoutes);
 
-        if (!myRoute.claimable())
+        if (!myRoute.route().claimable())
         {
             throw std::runtime_error("Trying to claim already claimed route");
         }
@@ -116,10 +119,10 @@ public:
         TrainsT myTrainsToClaim{};
         for (std::size_t i = 0; i < myRoute.length(); i++)
         {
-            if (theTrains.at(static_cast<std::size_t>(myTrainColor)) > 0)
+            if (theTrains.at(static_cast<std::size_t>(myRoute.color())) > 0)
             {
-                theTrains.at(static_cast<std::size_t>(myTrainColor)) -= 1;
-                myTrainsToClaim.push_back(Train{myTrainColor});
+                theTrains.at(static_cast<std::size_t>(myRoute.color())) -= 1;
+                myTrainsToClaim.push_back(Train{myRoute.color()});
             }
             else if (theTrains.at(static_cast<std::size_t>(Color::Rainbow)) > 0)
             {
@@ -132,7 +135,7 @@ public:
             }
         }
 
-        myRoute.claim(thePlayerId);
+        myRoute.route().claim(thePlayerId);
 
         theCitiesInNetwork.insert(myRoute.cities().first);
         theCitiesInNetwork.insert(myRoute.cities().second);

@@ -24,22 +24,22 @@ public:
     {
     }
 
-    CityPairT cities()
+    CityPairT cities() const
     {
         return theCities;
     }
 
-    ColorPairT colors()
+    ColorPairT colors() const
     {
         return theColors;
     }
 
-    LengthT length()
+    LengthT length() const
     {
         return theLength;
     }
 
-    bool claimable()
+    bool claimable() const
     {
         return thePlayer == PlayerId::None;
     }
@@ -56,7 +56,7 @@ public:
         }
     }
 
-    PointsT points()
+    PointsT points() const 
     {
         switch (theLength)
         {
