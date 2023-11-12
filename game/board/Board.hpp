@@ -1,11 +1,11 @@
 #pragma once
 
-#include "game/board/Route.hpp"
-#include "game/board/Player.hpp"
-
 #include "game/board/Deck.hpp"
 
 #include "game/types/Types.hpp"
+#include "game/types/Turn.hpp"
+
+#include <cstdint>
 
 static constexpr std::size_t NUM_TRAINS_PER_COLOR = 12;
 static constexpr std::size_t NUM_RAINBOW_TRAINS = 14;

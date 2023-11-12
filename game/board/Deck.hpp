@@ -16,6 +16,8 @@ class Deck
 public:
     CardT draw()
     {
+        checkNeedToShuffle();
+
         CardT myCard = theDeck.back();
         theDeck.pop_back();
         return myCard;

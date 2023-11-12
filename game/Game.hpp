@@ -1,16 +1,16 @@
 #pragma once
 
-#include "game/types/Types.hpp"
-
 #include "game/board/Board.hpp"
 #include "game/board/Route.hpp"
-#include "game/board/Player.hpp"
-
 #include "game/board/Train.hpp"
 
-#include "game/types/Turn.hpp"
+#include "game/board/Player.hpp"
 
-#include <fstream>
+#include "game/types/Types.hpp"
+#include "game/types/Turn.hpp"
+#include "game/types/PlayerId.hpp"
+
+#include <cstdint>
 #include <iostream>
 #include <vector>
 
@@ -18,36 +18,38 @@ class Game
 {
     using PlayersT = std::vector<Player>;
 
+    std::size_t theTurnTracker;
+
     Board theBoard;
     PlayersT thePlayers;
 
-    PlayersT::iterator theTurnTaker;
-
 public:
+    Game() = delete;
+
     Game(std::size_t aNumberOfPlayers) :
         theBoard{},
-        thePlayers{},
-        theTurnTaker{thePlayers.begin()}
+        thePlayers{Player{PlayerId::One}},
+        theTurnTracker{0}
     {
-        for (std::size_t i = 0; i < aNumberOfPlayers; i++)
-        {
-            thePlayers.push_back(Player{static_cast<PlayerId>(i)});
-        }
+        // for (std::uint8_t i = 0; i < aNumberOfPlayers; i++)
+        // {
+        //     thePlayers.push_back(Player{static_cast<PlayerId>(i)});
+        // }
     }
 
     PlayerId play()
     {
-        while (1 != 0)
-        {
+        // while (1 != 0)
+        // {
             takeTurn();
 
-            if (theTurnTaker->numberTrains() <= 2)
+            if (thePlayers.at(0).numberTrains() <= 2)
             {
-                break;
+                // break;
             }
 
             endTurn();
-        }
+        // }
 
         for (std::size_t i = 0; i < thePlayers.size(); i++)
         {
@@ -56,12 +58,14 @@ public:
         }
 
         return endGame();
+
+        return PlayerId::One;
     }
 
 private:
     void takeTurn()
     {
-        switch (theTurnTaker->takeTurn())
+        switch (thePlayers.at(0).takeTurn())
         {
             case Turn::DrawDestinationTickets:
                 drawDestinationTickets(1);
@@ -77,11 +81,7 @@ private:
 
     void endTurn()
     {
-        theTurnTaker++;
-        if (theTurnTaker == thePlayers.end())
-        {
-            theTurnTaker = thePlayers.begin();
-        }
+        // theTurnTracker = (theTurnTracker + 1) % thePlayers.size();
     }
 
     PlayerId endGame()
@@ -103,7 +103,7 @@ private:
 
     void drawDestinationTickets(std::size_t aNumberToChoose)
     {
-        DestinationsT myReturnedDestinations = theTurnTaker->drawDestinationTickets(theBoard.destinationTickets(), aNumberToChoose);
+        DestinationsT myReturnedDestinations = thePlayers.at(0).drawDestinationTickets(theBoard.destinationTickets(), aNumberToChoose);
         theBoard.returnDestinations(myReturnedDestinations);
     }
 
@@ -111,9 +111,9 @@ private:
     {
         for (std::size_t i = 0; i < 2; i++)
         {
-            TrainChoice myChoice = theTurnTaker->chooseTrain(i, theBoard.trains());
+            TrainChoice myChoice = thePlayers.at(0).chooseTrain(i, theBoard.trains());
             Train myTrain = theBoard.drawTrain(myChoice);
-            theTurnTaker->acceptTrain(myTrain);
+            thePlayers.at(0).acceptTrain(myTrain);
 
             if (myChoice != TrainChoice::TopDeck && myTrain.color() == Color::Rainbow)
             {
@@ -124,7 +124,7 @@ private:
 
     void claimRoute()
     {
-        TrainsT myReturnedTrains = theTurnTaker->claimRoute(theBoard.routes());
+        TrainsT myReturnedTrains = thePlayers.at(0).claimRoute(theBoard.routes());
         theBoard.returnTrains(myReturnedTrains);
     }
 };

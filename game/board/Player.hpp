@@ -8,7 +8,7 @@
 #include "game/types/Types.hpp"
 #include "game/types/ClaimedRoute.hpp"
 
-#include "strategy/StrategyBase.hpp"
+// #include "strategy/StrategyBase.hpp"
 #include "strategy/Human/HumanStrategy.hpp"
 
 #include <array>
@@ -31,7 +31,7 @@ class Player
 
     std::unordered_set<City> theCitiesInNetwork;
 
-    StrategyBase theStrategy;
+    HumanStrategy theStrategy;
     
 public:
     Player(PlayerId aPlayerId) :

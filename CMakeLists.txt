@@ -9,5 +9,8 @@ add_compile_options(-I /Users/evanlindquist/Documents/conductor/)
 project(conductor VERSION 0.1)
 
 include_directories(game)
+include_directories(strategy)
+
+set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(conductor main.cpp)
