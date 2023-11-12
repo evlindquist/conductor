@@ -7,6 +7,11 @@
 class StrategyBase
 {
 public:
+    virtual Turn takeTurn()
+    {
+        throw std::runtime_error("StrategyBase needs to have its virtual functions override");
+    }
+
     virtual DestinationChoiceT drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose)
     {
         throw std::runtime_error("StrategyBase needs to have its virtual functions override");

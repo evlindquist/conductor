@@ -11,6 +11,19 @@
 class HumanStrategy : public StrategyBase
 {
 public:
+    Turn takeTurn() override
+    {
+        std::cout << "How would you like to spend your turn?" << std::endl;
+        std::cout << "(0) Draw destination tickets" << std::endl;
+        std::cout << "(1) Take trains" << std::endl;
+        std::cout << "(2) Claim route" << std::endl;
+        std::cout << "Please enter the number of your choice: ";
+        std::size_t myTurn;
+        std::cin >> myTurn;
+
+        return static_cast<Turn>(myTurn);
+    }
+
     DestinationChoiceT drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose) override
     {
         std::cout << "Your destination options are: " << std::endl;
@@ -35,7 +48,7 @@ public:
         {
             std::cout << "(" << i << ") " << aOptions.at(i).color() << std::endl;
         }
-        std::cout << "(6) Top Deck" << std::endl;
+        std::cout << "(5) Top Deck" << std::endl;
 
         std::uint8_t myChoice = 0;
         std::cout << "Which train is for you? ";

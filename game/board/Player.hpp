@@ -52,7 +52,7 @@ public:
 
     Turn takeTurn()
     {
-        return Turn::DrawTrains;
+        return theStrategy.takeTurn();
     }
 
     DestinationsT drawDestinationTickets(DestinationOptionsT aOptions, std::size_t aNumberToChoose)
