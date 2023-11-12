@@ -4,7 +4,7 @@
 
 #include "game/board/Board.hpp"
 #include "game/board/Route.hpp"
-#include "game/gameState/Player.hpp"
+#include "game/board/Player.hpp"
 
 #include "game/board/Train.hpp"
 
