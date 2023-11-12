@@ -28,6 +28,12 @@ public:
     {
         return thePoints;
     }
+
+    friend std::ostream& operator<<(std::ostream& os, const DestinationTicket& aDestinationTicket)
+    {
+        os << aDestinationTicket.theCities.first << " to " << aDestinationTicket.theCities.second << " for " << aDestinationTicket.thePoints << " points";
+        return os;
+    }
 };
 
 static constexpr std::size_t NUM_DESTINATION_TICKETS = 30;

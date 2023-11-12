@@ -11,10 +11,10 @@ enum class Turn : std::uint8_t
 
 enum class TrainChoice : std::uint8_t
 {
-    FIRST,
-    SECOND,
-    THIRD,
-    FOURTH,
-    FIFTH,
-    TOP_DECK
+    First,
+    Second,
+    Third,
+    Fourth,
+    Fifth,
+    TopDeck
 };

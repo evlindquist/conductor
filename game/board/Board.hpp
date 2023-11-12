@@ -50,7 +50,7 @@ public:
 
     Train drawTrain(TrainChoice aChoice)
     {
-        if (aChoice == TrainChoice::TOP_DECK)
+        if (aChoice == TrainChoice::TopDeck)
         {
             Train myTopDeck = theTrainsDeck.draw();
 

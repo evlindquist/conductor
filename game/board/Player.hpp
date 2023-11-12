@@ -85,7 +85,7 @@ public:
     {
         TrainChoice myChoice = theStrategy.chooseTrain(aChoiceNumber, aOptions);
 
-        if (aChoiceNumber != 0 && myChoice != TrainChoice::TOP_DECK)
+        if (aChoiceNumber != 0 && myChoice != TrainChoice::TopDeck)
         {
             if (aOptions.at(static_cast<std::size_t>(myChoice)).color() == Color::Rainbow)
             {

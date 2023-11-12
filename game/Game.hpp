@@ -115,7 +115,7 @@ private:
             Train myTrain = theBoard.drawTrain(myChoice);
             theTurnTaker->acceptTrain(myTrain);
 
-            if (myChoice != TrainChoice::TOP_DECK && myTrain.color() == Color::Rainbow)
+            if (myChoice != TrainChoice::TopDeck && myTrain.color() == Color::Rainbow)
             {
                 break;
             }
